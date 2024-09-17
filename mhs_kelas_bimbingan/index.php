@@ -103,6 +103,59 @@
               <!-- form start -->
              
                 <div class="card-body">
+                  <?php
+                  function encriptData($kk)
+                  {
+                    $hh = base64_encode($kk);
+                    $aa = str_replace('=', '', $hh);
+
+                    $panjang_karakter = strlen($aa);
+
+                    $rand = '123';
+
+                    if($panjang_karakter % 2 === 0)
+                    {
+                      //genap
+                      $pp = $panjang_karakter;
+                      $bagi_2 = $pp / 2;
+                    }
+                    else{
+                      //ganjil
+                      $mm = $aa . $rand;
+                      $pp = strlen($mm);
+                      $bagi_2 = $pp / 2 ;
+
+                    }
+
+                    $bagian_awal = substr($aa, 0, -$bagi_2);
+                    $bagian_tengah = '888';
+                    $bagian_akhir = substr($aa, $bagi_2);
+
+                    $hasil_encode = $bagian_awal . $bagian_tengah . $bagian_akhir;
+
+                    return $hasil_encode;
+                  }
+
+                  $value = 'joko';
+                  $data_encript = encriptData($value);
+
+                  echo $data_encript;
+                  // function decriptData($uu)
+                  // {
+                  //   $hasil = base64_decode($uu);
+                  //   return $hasil;
+                  // }
+
+                  // $value = 'joko';
+                  // $data_encript = encriptData($value);
+
+                  // echo 'Variable: '.$value;
+                  // echo '<hr>';
+                  // echo 'Encode: '.$data_encript;
+                  // echo '<hr>';
+                  // echo 'Decode. '.decriptData($data_encript);
+
+                  ?>
                   <table id="example1" class="table table-bordered table-striped table-sm">
                   <thead>
                   <tr>
