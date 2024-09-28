@@ -104,7 +104,7 @@
              
                 <div class="card-body">
                    <?php 
-                  $idbimbingan = @$_GET['id_kelas'];
+                  $idbimbingan = decriptData(@$_GET['id_kelas']);
                   $qweri = mysqli_query($con, "SELECT nidn,kode_periode,nim FROM tbl_kelas_bimbingan WHERE id_kelas='$idbimbingan'") or die (mysqli_error($con));
                   $arrqweri = mysqli_fetch_assoc($qweri);
                   $nidn = $arrqweri['nidn'];

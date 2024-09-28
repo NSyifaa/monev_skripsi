@@ -250,6 +250,8 @@
                             </button>
 
                           <a href="proseshapus.php?kd_mhs=<?=$dt_mhs['nim'];?>&hapus=hapus" class="btn btn-sm btn-danger" onclick="return confirm('Anda akan menghapus data mhs dengan nim [<?=$dt_mhs['nim'];?>] - mahasiswa : [<?=$dt_mhs['nama'];?>]')"><i class="nav-icon fas fa-trash"></i></a>
+
+                          <a href="invoice.php" target="_blank" class="btn btn-sm btn-info"> Print</a>
                         </center>
                         </td>
                       </tr>

@@ -103,59 +103,6 @@
               <!-- form start -->
              
                 <div class="card-body">
-                  <?php
-                  function encriptData($kk)
-                  {
-                    $hh = base64_encode($kk);
-                    $aa = str_replace('=', '', $hh);
-
-                    $panjang_karakter = strlen($aa);
-
-                    $rand = '123';
-
-                    if($panjang_karakter % 2 === 0)
-                    {
-                      //genap
-                      $pp = $panjang_karakter;
-                      $bagi_2 = $pp / 2;
-                    }
-                    else{
-                      //ganjil
-                      $mm = $aa . $rand;
-                      $pp = strlen($mm);
-                      $bagi_2 = $pp / 2 ;
-
-                    }
-
-                    $bagian_awal = substr($aa, 0, -$bagi_2);
-                    $bagian_tengah = '888';
-                    $bagian_akhir = substr($aa, $bagi_2);
-
-                    $hasil_encode = $bagian_awal . $bagian_tengah . $bagian_akhir;
-
-                    return $hasil_encode;
-                  }
-
-                  $value = 'joko';
-                  $data_encript = encriptData($value);
-
-                  echo $data_encript;
-                  // function decriptData($uu)
-                  // {
-                  //   $hasil = base64_decode($uu);
-                  //   return $hasil;
-                  // }
-
-                  // $value = 'joko';
-                  // $data_encript = encriptData($value);
-
-                  // echo 'Variable: '.$value;
-                  // echo '<hr>';
-                  // echo 'Encode: '.$data_encript;
-                  // echo '<hr>';
-                  // echo 'Decode. '.decriptData($data_encript);
-
-                  ?>
                   <table id="example1" class="table table-bordered table-striped table-sm">
                   <thead>
                   <tr>
@@ -174,8 +121,6 @@
                   $nim = @$_SESSION['username'];
                   $qrkelasbimbingan = mysqli_query($con, "SELECT * FROM tbl_kelas_bimbingan WHERE nim='$nim'") or die (mysqli_error($con));
                   $rvkelasbimbingan = mysqli_num_rows($qrkelasbimbingan);
-                 
-
 
                   if($rvkelasbimbingan>0){
                     while($dt_kelasbimbingan = mysqli_fetch_array($qrkelasbimbingan)){
@@ -184,7 +129,6 @@
                       <td><?=$no++;?></td>
                       <td>
                         <?php
-
                         $pd=$dt_kelasbimbingan['kode_periode'];
                         $ambilperiode = mysqli_query($con, "SELECT periode FROM tbl_periode WHERE kode_periode='$pd'");
                         $arrp = mysqli_fetch_assoc($ambilperiode);
@@ -239,7 +183,7 @@
                        </td>
                         <td>
                           <center>
-                        <a href="detail_bimbingan.php?id_kelas=<?=$dt_kelasbimbingan['id_kelas'];?>&keterangan=<?=$dt_kelasbimbingan['progres'];?>" 
+                        <a href="detail_bimbingan.php?id_kelas=<?=encriptData($dt_kelasbimbingan['id_kelas']);?>&keterangan=<?=$dt_kelasbimbingan['progres'];?>" 
                         class= "btn btn-sm btn-info"><i class="nav-icon fas fa-edit"></i> Detail </a>
                         </center>
                         </td>
